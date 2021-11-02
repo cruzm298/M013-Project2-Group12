@@ -11,3 +11,31 @@ def exploreonly():
     print(mysum)
     
 # exploit only
+
+def ExploitOnly():
+    firstCafe = random.normalvariate(9, 3)
+    secondCafe = random.normalvariate(7, 5)
+    thirdCafe = random.normalvariate(11, 7)
+    sum = 0
+    x = 0
+    if firstCafe > secondCafe and firstCafe > thirdCafe:
+        while x < 297:
+            sum = sum + random.normalvariate(9, 3)
+            x = x + 1
+        print(sum)
+        print(x)
+    elif secondCafe > firstCafe and secondCafe > thirdCafe:
+        while x < 297:
+            sum = sum + random.normalvariate(7, 5)
+            x = x + 1
+        print(sum)
+        print(x)
+    elif thirdCafe > firstCafe and thirdCafe > secondCafe:
+        while x < 297:
+            sum = sum + random.normalvariate(11, 7)
+            x = x + 1
+        print(sum)
+        print(x)
+
+
+ExploitOnly()
