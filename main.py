@@ -22,17 +22,17 @@ def ExploitOnly():
         while x < 297:
             sum = sum + random.normalvariate(9, 3)
             x = x + 1
-        print(sum)
+        print(sum + firstCafe + secondCafe + thirdCafe)
         print(x)
     elif secondCafe > firstCafe and secondCafe > thirdCafe:
         while x < 297:
             sum = sum + random.normalvariate(7, 5)
             x = x + 1
-        print(sum)
+        print(sum + firstCafe + secondCafe + thirdCafe)
         print(x)
     elif thirdCafe > firstCafe and thirdCafe > secondCafe:
         while x < 297:
             sum = sum + random.normalvariate(11, 7)
             x = x + 1
-        print(sum)
+        print(sum + firstCafe + secondCafe + thirdCafe)
         print(x)
