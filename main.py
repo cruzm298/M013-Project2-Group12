@@ -36,6 +36,3 @@ def ExploitOnly():
             x = x + 1
         print(sum)
         print(x)
-
-
-ExploitOnly()
