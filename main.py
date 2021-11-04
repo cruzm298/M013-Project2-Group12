@@ -12,7 +12,7 @@ def exploreonly():
     
 # exploit only
 
-def ExploitOnly():
+def exploitOnly():
     firstCafe = random.normalvariate(9, 3)
     secondCafe = random.normalvariate(7, 5)
     thirdCafe = random.normalvariate(11, 7)
