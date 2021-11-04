@@ -35,4 +35,3 @@ def exploitOnly():
             sum = sum + random.normalvariate(11, 7)
             x = x + 1
         print(sum + firstCafe + secondCafe + thirdCafe)
-        print(x)
