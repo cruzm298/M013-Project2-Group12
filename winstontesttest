@@ -1,0 +1,84 @@
+import random
+
+
+def exploreonly():
+    mysum = 0
+    for i in range(100):
+        happinessCAFE1 = random.normalvariate(9, 3)
+        happinessCAFE2 = random.normalvariate(7, 5)
+        happinessCAFE3 = random.normalvariate(11, 7)
+        mysum = mysum + happinessCAFE1 + happinessCAFE2 + happinessCAFE3
+    print(mysum)
+
+def exploitonly():
+    mysum = 0
+    happinessCAFE1 = random.normalvariate(9, 3)
+    happinessCAFE2 = random.normalvariate(7, 5)
+    happinessCAFE3 = random.normalvariate(11, 7)
+    listofcafe = [happinessCAFE1, happinessCAFE2, happinessCAFE3]
+    BestCafeteria = listofcafe.index(max(happinessCAFE1, happinessCAFE2, happinessCAFE3)) + 1
+    mysum = mysum + happinessCAFE1 + happinessCAFE2 + happinessCAFE3
+    for i in range(297):
+        if BestCafeteria == 1:
+            mysum = mysum + random.normalvariate(9, 3)
+        if BestCafeteria == 2:
+            mysum = mysum + random.normalvariate(7, 5)
+        if BestCafeteria == 3:
+            mysum = mysum + random.normalvariate(11, 7)
+    return(mysum)
+
+
+def egreedy(e: int):
+    # Something wrong with the percentage of egreedy
+    mysum = 0
+    happinessCAFE1 = random.normalvariate(9, 3)
+    happinessCAFE2 = random.normalvariate(7, 5)
+    happinessCAFE3 = random.normalvariate(11, 7)
+    ALLhappinessforCAFE1 = [happinessCAFE1]  # Will eventually include all 300 happiness values.
+    ALLhappinessforCAFE2 = [happinessCAFE2]
+    ALLhappinessforCAFE3 = [happinessCAFE3]
+    AVERAGEhappinessofCAFE1 = happinessCAFE1
+    AVERAGEhappinessofCAFE2 = happinessCAFE2
+    AVERAGEhappinessofCAFE3 = happinessCAFE3
+    listofcafe = [happinessCAFE1, happinessCAFE2, happinessCAFE3]
+    CurrentBestCafeteria = listofcafe.index(
+        max(AVERAGEhappinessofCAFE1, AVERAGEhappinessofCAFE2, AVERAGEhappinessofCAFE3))  # Finds highest cafe happiness
+    mysum = mysum + happinessCAFE1 + happinessCAFE2 + happinessCAFE3
+    for i in range(297):
+        percentoftheday = random.randint(0, 100)
+        item0 = random.normalvariate(9, 3)
+        item1 = random.normalvariate(7, 5)
+        item2 = random.normalvariate(11, 7)
+        RandomListOfCafe = [item0, item1,
+                            item2]  # This random list will be refreshed daily.
+        if percentoftheday < e:  # The random list will be used in this scenario.
+            WhichRandomCafeDoIWantToday = random.randint(0, 2)  # Chooses a random cafeteria for today.
+            x = RandomListOfCafe[WhichRandomCafeDoIWantToday]
+            mysum = mysum + x
+            if WhichRandomCafeDoIWantToday == 0:
+                ALLhappinessforCAFE1.append(RandomListOfCafe[0])
+            if WhichRandomCafeDoIWantToday == 1:
+                ALLhappinessforCAFE2.append(RandomListOfCafe[1])
+            if WhichRandomCafeDoIWantToday == 2:
+                ALLhappinessforCAFE3.append(RandomListOfCafe[2])
+
+        else:
+            if CurrentBestCafeteria == 0:
+                temp = random.normalvariate(9, 3)
+                mysum = mysum + temp
+                ALLhappinessforCAFE1.append(temp)
+            if CurrentBestCafeteria == 1:
+                temp = random.normalvariate(7, 5)
+                mysum = mysum + temp
+                ALLhappinessforCAFE2.append(temp)
+            if CurrentBestCafeteria == 2:
+                temp = random.normalvariate(11, 7)
+                mysum = mysum + temp
+                ALLhappinessforCAFE3.append(temp)
+        AVERAGEhappinessofCAFE1 = sum(ALLhappinessforCAFE1) / len([ALLhappinessforCAFE1])
+        AVERAGEhappinessofCAFE2 = sum(ALLhappinessforCAFE2) / len([ALLhappinessforCAFE2])
+        AVERAGEhappinessofCAFE3 = sum(ALLhappinessforCAFE3) / len([ALLhappinessforCAFE3])
+        listofcafe = [AVERAGEhappinessofCAFE1, AVERAGEhappinessofCAFE2, AVERAGEhappinessofCAFE3]
+        CurrentBestCafeteria = listofcafe.index(
+            max(AVERAGEhappinessofCAFE1, AVERAGEhappinessofCAFE2, AVERAGEhappinessofCAFE3))
+    return(mysum)
