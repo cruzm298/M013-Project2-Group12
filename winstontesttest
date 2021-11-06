@@ -1,7 +1,7 @@
 import random
 
 
-def exploreonly():
+def exploreOnly():
     mysum = 0
     for i in range(100):
         happinessCAFE1 = random.normalvariate(9, 3)
@@ -10,7 +10,7 @@ def exploreonly():
         mysum = mysum + happinessCAFE1 + happinessCAFE2 + happinessCAFE3
     return(mysum)
 
-def exploitonly():
+def exploitOnly():
     mysum = 0
     happinessCAFE1 = random.normalvariate(9, 3)
     happinessCAFE2 = random.normalvariate(7, 5)
@@ -28,7 +28,7 @@ def exploitonly():
     return(mysum)
 
 
-def egreedy(e: int):
+def eGreedy(e: int):
     mysum = 0
     happinessCAFE1 = random.normalvariate(9, 3)
     happinessCAFE2 = random.normalvariate(7, 5)
