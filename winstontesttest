@@ -8,7 +8,7 @@ def exploreonly():
         happinessCAFE2 = random.normalvariate(7, 5)
         happinessCAFE3 = random.normalvariate(11, 7)
         mysum = mysum + happinessCAFE1 + happinessCAFE2 + happinessCAFE3
-    print(mysum)
+    return(mysum)
 
 def exploitonly():
     mysum = 0
@@ -16,20 +16,19 @@ def exploitonly():
     happinessCAFE2 = random.normalvariate(7, 5)
     happinessCAFE3 = random.normalvariate(11, 7)
     listofcafe = [happinessCAFE1, happinessCAFE2, happinessCAFE3]
-    BestCafeteria = listofcafe.index(max(happinessCAFE1, happinessCAFE2, happinessCAFE3)) + 1
+    BestCafeteria = listofcafe.index(max(listofcafe))
     mysum = mysum + happinessCAFE1 + happinessCAFE2 + happinessCAFE3
     for i in range(297):
-        if BestCafeteria == 1:
+        if BestCafeteria == 0:
             mysum = mysum + random.normalvariate(9, 3)
-        if BestCafeteria == 2:
+        elif BestCafeteria == 1:
             mysum = mysum + random.normalvariate(7, 5)
-        if BestCafeteria == 3:
+        else:
             mysum = mysum + random.normalvariate(11, 7)
     return(mysum)
 
 
 def egreedy(e: int):
-    # Something wrong with the percentage of egreedy
     mysum = 0
     happinessCAFE1 = random.normalvariate(9, 3)
     happinessCAFE2 = random.normalvariate(7, 5)
@@ -41,8 +40,7 @@ def egreedy(e: int):
     AVERAGEhappinessofCAFE2 = happinessCAFE2
     AVERAGEhappinessofCAFE3 = happinessCAFE3
     listofcafe = [happinessCAFE1, happinessCAFE2, happinessCAFE3]
-    CurrentBestCafeteria = listofcafe.index(
-        max(AVERAGEhappinessofCAFE1, AVERAGEhappinessofCAFE2, AVERAGEhappinessofCAFE3))  # Finds highest cafe happiness
+    CurrentBestCafeteria = listofcafe.index(max(listofcafe))  # Finds highest cafe happiness
     mysum = mysum + happinessCAFE1 + happinessCAFE2 + happinessCAFE3
     for i in range(297):
         percentoftheday = random.randint(0, 100)
@@ -51,15 +49,15 @@ def egreedy(e: int):
         item2 = random.normalvariate(11, 7)
         RandomListOfCafe = [item0, item1,
                             item2]  # This random list will be refreshed daily.
-        if percentoftheday < e:  # The random list will be used in this scenario.
+        if percentoftheday < e or e == 100:  # The random list will be used in this scenario.
             WhichRandomCafeDoIWantToday = random.randint(0, 2)  # Chooses a random cafeteria for today.
             x = RandomListOfCafe[WhichRandomCafeDoIWantToday]
             mysum = mysum + x
             if WhichRandomCafeDoIWantToday == 0:
                 ALLhappinessforCAFE1.append(RandomListOfCafe[0])
-            if WhichRandomCafeDoIWantToday == 1:
+            elif WhichRandomCafeDoIWantToday == 1:
                 ALLhappinessforCAFE2.append(RandomListOfCafe[1])
-            if WhichRandomCafeDoIWantToday == 2:
+            else:
                 ALLhappinessforCAFE3.append(RandomListOfCafe[2])
 
         else:
@@ -67,11 +65,11 @@ def egreedy(e: int):
                 temp = random.normalvariate(9, 3)
                 mysum = mysum + temp
                 ALLhappinessforCAFE1.append(temp)
-            if CurrentBestCafeteria == 1:
+            elif CurrentBestCafeteria == 1:
                 temp = random.normalvariate(7, 5)
                 mysum = mysum + temp
                 ALLhappinessforCAFE2.append(temp)
-            if CurrentBestCafeteria == 2:
+            else:
                 temp = random.normalvariate(11, 7)
                 mysum = mysum + temp
                 ALLhappinessforCAFE3.append(temp)
