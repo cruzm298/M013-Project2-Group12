@@ -77,6 +77,5 @@ def egreedy(e: int):
         AVERAGEhappinessofCAFE2 = sum(ALLhappinessforCAFE2) / len([ALLhappinessforCAFE2])
         AVERAGEhappinessofCAFE3 = sum(ALLhappinessforCAFE3) / len([ALLhappinessforCAFE3])
         listofcafe = [AVERAGEhappinessofCAFE1, AVERAGEhappinessofCAFE2, AVERAGEhappinessofCAFE3]
-        CurrentBestCafeteria = listofcafe.index(
-            max(AVERAGEhappinessofCAFE1, AVERAGEhappinessofCAFE2, AVERAGEhappinessofCAFE3))
+        CurrentBestCafeteria = listofcafe.index(max(listofcafe))
     return(mysum)
