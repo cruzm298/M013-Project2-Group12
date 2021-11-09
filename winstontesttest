@@ -6,9 +6,10 @@ def exploreOnly():
     for i in range(100):
         happinessCAFE1 = random.normalvariate(9, 3)
         happinessCAFE2 = random.normalvariate(7, 5)
-        happinessCAFE3 = random.normalvariate(11, 7)
+        happinessCAFE3 = random.normalvariate(10, 7)
         mysum = mysum + happinessCAFE1 + happinessCAFE2 + happinessCAFE3
-    return(mysum)
+    return (mysum)
+
 
 def exploitOnly():
     mysum = 0
@@ -25,7 +26,7 @@ def exploitOnly():
             mysum = mysum + random.normalvariate(7, 5)
         else:
             mysum = mysum + random.normalvariate(11, 7)
-    return(mysum)
+    return (mysum)
 
 
 def eGreedy(e: int):
@@ -78,4 +79,52 @@ def eGreedy(e: int):
         AVERAGEhappinessofCAFE3 = sum(ALLhappinessforCAFE3) / len([ALLhappinessforCAFE3])
         listofcafe = [AVERAGEhappinessofCAFE1, AVERAGEhappinessofCAFE2, AVERAGEhappinessofCAFE3]
         CurrentBestCafeteria = listofcafe.index(max(listofcafe))
-    return(mysum)
+    return (mysum)
+
+
+def Simulation(t: int, e: int):
+    numberoftrialsleft = t
+    OptimumHappiness = 11 * 300
+    totalresultexploreOnly = 0
+    totalresultexploitOnly = 0
+    totalresulteGreedy = 0
+    while numberoftrialsleft > 0:
+        exploreOnlyResult = exploreOnly()
+        exploitOnlyResult = exploitOnly()
+        eGreedyResult = eGreedy(e)
+        totalresultexploreOnly = totalresultexploreOnly + exploreOnlyResult
+        totalresultexploitOnly = totalresultexploitOnly + exploitOnlyResult
+        totalresulteGreedy = totalresulteGreedy + eGreedyResult
+
+        numberoftrialsleft = numberoftrialsleft - 1
+
+    exploreOnlyExpectedTotalHappiness = 100 * 9 + 100 * 7 + 100 * 11
+    exploreOnlyAverageTotalHappiness = totalresultexploreOnly / t
+    exploreOnlyExpectedRegret = OptimumHappiness - exploreOnlyExpectedTotalHappiness
+    exploreOnlyAverageRegret = OptimumHappiness - exploreOnlyAverageTotalHappiness
+    print("Explore Only Values:")
+    print("Expected Total Happiness: ", exploreOnlyExpectedTotalHappiness)  # 2700
+    print("Average Total Happiness: ", exploreOnlyAverageTotalHappiness)  #
+    print("Expected Regret: ", exploreOnlyExpectedRegret)  # 600
+    print("Average Regret: ", exploreOnlyAverageRegret, "\n")  #
+
+    exploitOnlyExpectedTotalHappiness = 9 + 7 + 11 + 297 * 11
+    exploitOnlyAverageTotalHappiness = totalresultexploitOnly / t
+    exploitOnlyExpectedRegret = OptimumHappiness - exploitOnlyExpectedTotalHappiness
+    exploitOnlyAverageRegret = OptimumHappiness - exploitOnlyAverageTotalHappiness
+    print("Exploit Only Values:")
+    print("Expected Total Happiness: ", exploitOnlyExpectedTotalHappiness)
+    print("Average Total Happiness: ", exploitOnlyAverageTotalHappiness)
+    print("Expected Regret: ", exploitOnlyExpectedRegret)
+    print("Average Regret: ", exploitOnlyAverageRegret, "\n")
+
+    eGreedyExpectedTotalHappiness = (11 * (100 - e) * 0.01 * 300) + (11 * e / 3 * .01 * 300) + (
+            9 * e / 3 * .01 * 300) + (7 * e / 3 * .01 * 300)
+    eGreedyAverageTotalHappiness = totalresulteGreedy / t
+    eGreedyExpectedRegret = OptimumHappiness - eGreedyExpectedTotalHappiness
+    eGreedyAverageRegret = OptimumHappiness - eGreedyAverageTotalHappiness
+    print("E-Greedy Values:")
+    print("Expected Total Happiness: ", eGreedyExpectedTotalHappiness)
+    print("Average Total Happiness: ", eGreedyAverageTotalHappiness)
+    print("Expected Regret: ", eGreedyExpectedRegret)
+    print("Average Regret: ", eGreedyAverageRegret)
