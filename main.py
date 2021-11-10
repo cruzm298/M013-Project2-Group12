@@ -56,7 +56,7 @@ def eGreedy(e: int):
         item2 = random.normalvariate(11, 7)
         RandomListOfCafe = [item0, item1,
                             item2]  # This random list will be refreshed daily.
-        if percentoftheday < e or e == 100:  # The random list will be used in this scenario.
+        if percentoftheday < e:  # The random list will be used in this scenario.
             WhichRandomCafeDoIWantToday = random.randint(0, 2)  # Chooses a random cafeteria for today.
             x = RandomListOfCafe[WhichRandomCafeDoIWantToday]
             mysum = mysum + x
