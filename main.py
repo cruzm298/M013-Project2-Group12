@@ -1,7 +1,7 @@
 import random
 
 
-def exploreonly():
+def exploreOnly():
     mysum = 0
     for i in range(100): # Visit each cafeteria 100 times. Each time, add it's happiness value.
         happinessCAFE1 = random.normalvariate(9, 3)
