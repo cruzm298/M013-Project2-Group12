@@ -6,7 +6,7 @@ def exploreOnly():
     for i in range(100):
         happinessCAFE1 = random.normalvariate(9, 3)
         happinessCAFE2 = random.normalvariate(7, 5)
-        happinessCAFE3 = random.normalvariate(10, 7)
+        happinessCAFE3 = random.normalvariate(11, 7)
         mysum = mysum + happinessCAFE1 + happinessCAFE2 + happinessCAFE3
     return (mysum)
 
@@ -102,6 +102,7 @@ def Simulation(t: int, e: int):
     exploreOnlyAverageTotalHappiness = totalresultexploreOnly / t
     exploreOnlyExpectedRegret = OptimumHappiness - exploreOnlyExpectedTotalHappiness
     exploreOnlyAverageRegret = OptimumHappiness - exploreOnlyAverageTotalHappiness
+    print("Optimum Happiness: ", OptimumHappiness, "\n")
     print("Explore Only Values:")
     print("Expected Total Happiness: ", exploreOnlyExpectedTotalHappiness)  # 2700
     print("Average Total Happiness: ", exploreOnlyAverageTotalHappiness)  #
@@ -128,3 +129,27 @@ def Simulation(t: int, e: int):
     print("Average Total Happiness: ", eGreedyAverageTotalHappiness)
     print("Expected Regret: ", eGreedyExpectedRegret)
     print("Average Regret: ", eGreedyAverageRegret)
+
+# Simulation(1000,12)
+def exxploitOnly():
+    firstCafe = random.normalvariate(9, 3)
+    secondCafe = random.normalvariate(7, 5)
+    thirdCafe = random.normalvariate(11, 7)
+    sum = 0
+    x = 0
+    if firstCafe > secondCafe and firstCafe > thirdCafe:
+        while x < 297:
+            sum = sum + random.normalvariate(9, 3)
+            x = x + 1
+        print(sum + firstCafe + secondCafe + thirdCafe)
+    elif secondCafe > firstCafe and secondCafe > thirdCafe:
+        while x < 297:
+            sum = sum + random.normalvariate(7, 5)
+            x = x + 1
+        print(sum + firstCafe + secondCafe + thirdCafe)
+
+    elif thirdCafe > firstCafe and thirdCafe > secondCafe:
+        while x < 297:
+            sum = sum + random.normalvariate(11, 7)
+            x = x + 1
+        print(sum + firstCafe + secondCafe + thirdCafe)
