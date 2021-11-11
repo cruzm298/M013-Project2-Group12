@@ -3,13 +3,13 @@ import random
 
 def exploreOnly():
     mysum = 0
-    for i in range(100): # Visit each cafeteria 100 times. Each time, add it's happiness value.
+    for i in range(100):  # Visit each cafeteria 100 times. Each time, add it's happiness value.
         happinessCAFE1 = random.normalvariate(9, 3)
         happinessCAFE2 = random.normalvariate(7, 5)
         happinessCAFE3 = random.normalvariate(11, 7)
         mysum = mysum + happinessCAFE1 + happinessCAFE2 + happinessCAFE3
-    return(mysum)
-    
+    return (mysum)
+
 
 def exploitOnly():
     firstCafe = random.normalvariate(9, 3)
@@ -26,15 +26,14 @@ def exploitOnly():
         while x < 297:
             sum = sum + random.normalvariate(7, 5)
             x = x + 1
-        return(sum + firstCafe + secondCafe + thirdCafe)
+        return (sum + firstCafe + secondCafe + thirdCafe)
     else:
         while x < 297:
             sum = sum + random.normalvariate(11, 7)
             x = x + 1
-        return(sum + firstCafe + secondCafe + thirdCafe)
-        
-        
-        
+        return (sum + firstCafe + secondCafe + thirdCafe)
+
+
 def eGreedy(e: int):
     mysum = 0
     happinessCAFE1 = random.normalvariate(9, 3)
@@ -131,7 +130,7 @@ def Simulation(t: int, e: int):
     eGreedyExpectedRegret = OptimumHappiness - eGreedyExpectedTotalHappiness
     eGreedyAverageRegret = OptimumHappiness - eGreedyAverageTotalHappiness
     print("e-Greedy Values:")
-    print("Expected Total Happiness: ", eGreedyExpectedTotalHappiness)
+    print("Expected Total Happiness: ", int(eGreedyExpectedTotalHappiness))
     print("Average Total Happiness: ", eGreedyAverageTotalHappiness)
-    print("Expected Regret: ", eGreedyExpectedRegret)
+    print("Expected Regret: ", int(eGreedyExpectedRegret))
     print("Average Regret: ", eGreedyAverageRegret)
